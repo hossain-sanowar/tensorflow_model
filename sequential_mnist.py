@@ -17,11 +17,11 @@ model.compile(optimizer="adam",
               metrics=["accuracy"])
 
 
-model.fit(x_train, y_train)
+model.fit(x_train, y_train, epochs=5)
 
 test_loss, test_accuracy=model.evaluate(x_test,y_test)
 print(f"test_loss:{test_loss}")
 print(f"test_accuracy:{test_accuracy}")
-model.summary()
+#model.summary()
 model.save("sequential_model.h5")
 load_model=tf.keras.models.load_model("sequential_model.h5")
