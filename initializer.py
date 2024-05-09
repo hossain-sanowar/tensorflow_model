@@ -21,10 +21,19 @@ model_glorot=model_init(initializer=GlorotNormal())
 model_he=model_init(initializer=HeNormal())
 model_random=model_init(initializer=RandomNormal(mean=0.0, stddev=0.05))
 
-# initilize =[GlorotNormal(), HeNormal(), RandomNormal(mean=0.0, stddev=0.05)]
-for model in [model_glorot,model_he, model_random]:
+initilize =[GlorotNormal(), HeNormal(), RandomNormal(mean=0.0, stddev=0.05)]
+
+# for model in [model_glorot,model_he, model_random]:
+#     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+#     model.fit(x_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
+
+# for model in [model_init(initializer=GlorotNormal()),model_init(initializer=HeNormal()),model_init(initializer=RandomNormal(mean=0.0, stddev=0.05))]:
+#     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+#     model.fit(x_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
+
+#call map function
+model_list=map(model_init, initilize)
+
+for model in model_list:
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     model.fit(x_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
-
-
-
