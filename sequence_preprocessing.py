@@ -1,4 +1,3 @@
-
 """
 1. convert pad sequence to the same length
 2. here maximum length 5
