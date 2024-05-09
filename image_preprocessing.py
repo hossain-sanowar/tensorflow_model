@@ -44,6 +44,39 @@ for batch in datagen.flow(img_array, batch_size=1):
     print(f"Augmented Image {i}: ")
     display(augmented_img)
     plt.imshow(augmented_img)
-    plt.show()
+    #plt.show()
     if i==10: #generated 5 augmented image
         break
+
+# Load original image from data folder like train, test folder
+# load images from directory
+train_generator=datagen.flow_from_directory(
+    'train/',
+    target_size=(150,150),
+    batch_size=32,
+    class_mode='categorical' #class_mode='binary', the generator will return 1D numpy arrays of binary labels (0s and 1s) for binary classification problems
+)
+#class_mode='categorical'. This will return 2D numpy arrays of one-hot encoded labels, where each row corresponds to one image and each column corresponds to one class. The value at a particular row-column combination will be 1 if the image belongs to that class, and 0
+# # Get a batch of images and labels from the generator
+# images, labels = train_generator.next()
+#
+# # Display the first few images from the batch
+# plt.figure(figsize=(10, 10))
+# for i in range(9):
+#     plt.subplot(3, 3, i + 1)
+#     plt.imshow(images[i])
+#     plt.title(f'Label: {labels[i]}')
+#     plt.axis('off')
+# plt.show()
+
+# Display the first batch of images
+for i in range(len(train_generator)):
+    images, labels = train_generator[i]  # Get a batch of images and labels
+    plt.figure(figsize=(10, 10))
+    for j in range(len(images)):
+        plt.subplot(3, 3, j + 1)
+        plt.imshow(images[j])
+        plt.title(f'Label: {labels[j]}')
+        plt.axis('off')
+    plt.show()
+    break  # Only display the first batch
