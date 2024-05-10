@@ -1,5 +1,6 @@
 import tensorflow as tf
-from tensorflow.keras import Input, Dense
+from tensorflow.keras.layers import Input, Dense
+import numpy as np
 
 #define the input shape
 input_shape=(32,32,3)
@@ -13,5 +14,5 @@ def validate_input_data(data):
         raise ValueError(f"Input data shape {data.shape[1:]} does not match the expected shape {input_shape}")
 
 # example uses
-input_data=
+input_data=np.random.randn(10, *input_shape)
 validate_input_data(input_data)
